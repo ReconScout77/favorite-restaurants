@@ -185,6 +185,9 @@ namespace FavoriteRestaurants.Tests
       List<Restaurant> allRestaurants = Restaurant.GetAll();
       List<Restaurant> expectedList = new List<Restaurant>{newRestaurant2};
 
+      // Console.WriteLine(allRestaurants[0].GetDetails());
+      // Console.WriteLine(expectedList[0].GetDetails());
+
       CollectionAssert.AreEqual(allRestaurants, expectedList);
     }
   }

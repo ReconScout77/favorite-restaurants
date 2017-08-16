@@ -260,7 +260,7 @@ namespace FavoriteRestaurants.Models
       }
     }
 
-    public void DeleteRestaurant(int id)
+    public static void DeleteRestaurant(int id)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -269,28 +269,8 @@ namespace FavoriteRestaurants.Models
 
       MySqlParameter thisId = new MySqlParameter();
       thisId.ParameterName = "@thisId";
-      thisId.Value = _id;
+      thisId.Value = id;
       cmd.Parameters.Add(thisId);
-
-      MySqlParameter name = new MySqlParameter();
-      name.ParameterName = "@name";
-      name.Value = this._name;
-      cmd.Parameters.Add(name);
-
-      MySqlParameter location = new MySqlParameter();
-      location.ParameterName = "@location";
-      location.Value = this._location;
-      cmd.Parameters.Add(location);
-
-      MySqlParameter hours = new MySqlParameter();
-      hours.ParameterName = "@hours";
-      hours.Value = this._hours;
-      cmd.Parameters.Add(hours);
-
-      MySqlParameter cuisineId = new MySqlParameter();
-      cuisineId.ParameterName = "@cuisine_id";
-      cuisineId.Value = this._cuisineId;
-      cmd.Parameters.Add(cuisineId);
 
       cmd.ExecuteNonQuery();
       conn.Close();
