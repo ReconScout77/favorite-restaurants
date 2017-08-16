@@ -71,6 +71,18 @@ namespace FavoriteRestaurants.Tests
     }
 
     [TestMethod]
+    public void GetAll_ListofRestaurants_RestaurantList()
+    {
+      Restaurant newRestaurant = new Restaurant("otherplace", "thatlocation", "23", 2);
+      newRestaurant.Save();
+      Restaurant newRestaurant2 = new Restaurant("place", "location", "24", 1);
+      newRestaurant2.Save();
+      List<Restaurant> allRestaurants = Restaurant.GetAll();
+      List<Restaurant> expectedList = new List<Restaurant>{newRestaurant, newRestaurant2};
+      CollectionAssert.AreEqual(allRestaurants, expectedList);
+    }
+
+    [TestMethod]
     public void Equals_RestaurantsAreEqual_true()
     {
       Restaurant newRestaurant = new Restaurant("place", "location", "24", 1);
@@ -92,5 +104,88 @@ namespace FavoriteRestaurants.Tests
       Assert.AreEqual(testRestaurant, foundRestaurant);
     }
 
+    [TestMethod]
+    public void Update_UpdatesRestaurantNameInDatabase_String()
+    {
+      //Arrange
+      Restaurant testRestaurant = new Restaurant("place", "location", "24", 1);
+      testRestaurant.Save();
+      string newName = "otherplace";
+
+      //Act
+      testRestaurant.UpdateName(newName);
+
+      string result = testRestaurant.GetName();
+
+      //Assert
+      Assert.AreEqual(newName, result);
+    }
+
+    [TestMethod]
+    public void Update_UpdatesRestaurantLocationInDatabase_String()
+    {
+      //Arrange
+      Restaurant testRestaurant = new Restaurant("place", "location", "24", 1);
+      testRestaurant.Save();
+      string newLocation = "otherlocation";
+
+      //Act
+      testRestaurant.UpdateLocation(newLocation);
+
+      string result = testRestaurant.GetLocation();
+
+      //Assert
+      Assert.AreEqual(newLocation, result);
+    }
+
+    [TestMethod]
+    public void Update_UpdatesRestaurantHoursInDatabase_String()
+    {
+      //Arrange
+      Restaurant testRestaurant = new Restaurant("place", "location", "24", 1);
+      testRestaurant.Save();
+      string newHours = "23";
+
+      //Act
+      testRestaurant.UpdateHours(newHours);
+
+      string result = testRestaurant.GetHours();
+
+      //Assert
+      Assert.AreEqual(newHours, result);
+    }
+
+    [TestMethod]
+    public void Update_UpdatesRestaurantInDatabase_String()
+    {
+      //Arrange
+      Restaurant testRestaurant = new Restaurant("place", "location", "24", 1);
+      testRestaurant.Save();
+      string newName = "otherplace";
+      string newLocation = "otherlocation";
+      string newHours = "23";
+
+      //Act
+      testRestaurant.UpdateRestaurant(newName, newLocation, newHours);
+
+      bool isItTrue = (testRestaurant.GetName() == newName && testRestaurant.GetLocation() == newLocation && testRestaurant.GetHours() == newHours);
+      //Assert
+      Assert.AreEqual(true, isItTrue);
+    }
+
+    [TestMethod]
+    public void DeleteRestaurant_RemoveOneRestaurantFromList_RestaurantList()
+    {
+      Restaurant newRestaurant = new Restaurant("place", "location", "24", 1);
+      newRestaurant.Save();
+      Restaurant newRestaurant2 = new Restaurant("otherplace", "thatlocation", "23", 2);
+      newRestaurant2.Save();
+
+      Restaurant.DeleteRestaurant(newRestaurant.GetId());
+      List<Restaurant> allRestaurants = Restaurant.GetAll();
+      List<Restaurant> expectedList = new List<Restaurant>{newRestaurant2};
+
+      CollectionAssert.AreEqual(allRestaurants, expectedList);
+    }
   }
 }

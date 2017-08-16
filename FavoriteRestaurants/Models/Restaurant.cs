@@ -46,6 +46,11 @@ namespace FavoriteRestaurants.Models
       return _cuisineId;
     }
 
+    public string GetDetails()
+   {
+     return "ID: " +_id + ", Name: " + _name + ", Location: " + _location + ",  Hours: " + _hours + ", CuisineID: " + _cuisineId;
+   }
+
     public static List<Restaurant> GetAll()
     {
       List<Restaurant> allRestaurants = new List<Restaurant>();
@@ -175,6 +180,131 @@ namespace FavoriteRestaurants.Models
         conn.Dispose();
       }
       return foundRestaurant;
+    }
+
+    public void UpdateName(string newName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE restaurants SET name = @newName WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter name = new MySqlParameter();
+      name.ParameterName = "@newName";
+      name.Value = newName;
+      cmd.Parameters.Add(name);
+
+      cmd.ExecuteNonQuery();
+      _name = newName;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateLocation(string newLocation)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE restaurants SET location = @newLocation WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter location = new MySqlParameter();
+      location.ParameterName = "@newLocation";
+      location.Value = newLocation;
+      cmd.Parameters.Add(location);
+
+      cmd.ExecuteNonQuery();
+      _location = newLocation;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateHours(string newHours)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE restaurants SET hours = @newHours WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter hours = new MySqlParameter();
+      hours.ParameterName = "@newHours";
+      hours.Value = newHours;
+      cmd.Parameters.Add(hours);
+
+      cmd.ExecuteNonQuery();
+      _hours = newHours;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void DeleteRestaurant(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM restaurants WHERE id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = _id;
+      cmd.Parameters.Add(thisId);
+
+      MySqlParameter name = new MySqlParameter();
+      name.ParameterName = "@name";
+      name.Value = this._name;
+      cmd.Parameters.Add(name);
+
+      MySqlParameter location = new MySqlParameter();
+      location.ParameterName = "@location";
+      location.Value = this._location;
+      cmd.Parameters.Add(location);
+
+      MySqlParameter hours = new MySqlParameter();
+      hours.ParameterName = "@hours";
+      hours.Value = this._hours;
+      cmd.Parameters.Add(hours);
+
+      MySqlParameter cuisineId = new MySqlParameter();
+      cuisineId.ParameterName = "@cuisine_id";
+      cuisineId.Value = this._cuisineId;
+      cmd.Parameters.Add(cuisineId);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateRestaurant(string newName, string newLocation, string newHours)
+    {
+      this.UpdateName(newName);
+      this.UpdateLocation(newLocation);
+      this.UpdateHours(newHours);
     }
 
   }
