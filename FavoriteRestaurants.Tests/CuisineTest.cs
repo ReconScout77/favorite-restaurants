@@ -112,5 +112,16 @@ namespace FavoriteRestaurants.Tests
 
       CollectionAssert.AreEqual(testRestaurantList, resultRestaurantList);
     }
+
+    [TestMethod]
+    public void UpdateCuisineName_UpdatesCuisineName_CuisineName()
+    {
+      Cuisine testCuisine = new Cuisine("Mexican", 1);
+      testCuisine.Save();
+      string newCuisine = "Japanese";
+      testCuisine.UpdateCuisineName(newCuisine);
+      string result = testCuisine.GetName();
+      Assert.AreEqual(newCuisine, result);
+    }
   }
 }

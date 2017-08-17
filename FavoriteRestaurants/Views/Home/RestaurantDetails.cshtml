@@ -2,10 +2,24 @@
   Layout = "_Layout";
 }
 
-<h2>@Model.GetName() Details</h2>
+<h1>Best Restaurants</h1>
 
-<p>@Model.GetLocation()</p>
-<p>@Model.GetHours()</p>
+<h2>@Model.GetName()</h2>
 
-<button><a href="/cuisines/@Model.GetCuisineId()/@Model.GetCuisine()-restaurants/@Model.GetId()/edit">Update Restaurant</a></button>
-<button><a href="/">Home</a></button>
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <div class="well">
+      <p>Location: @Model.GetLocation()</p>
+      <p>Hours: @Model.GetHours()</p>
+      <p><em>@Model.GetCuisine() Cuisine</em><p>
+    </div>
+  </div>
+</div>
+
+<p class="buttons"><button><a href="/cuisines/@Model.GetCuisineId()/@Model.GetCuisine()-restaurants/@Model.GetId()/edit">Update Restaurant</a></button></p>
+
+<p class="buttons"><button><a href="/cuisines/@Model.GetCuisineId()/@Model.GetCuisine()-restaurants/@Model.GetId()/delete">
+<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+</a></button></p>
+
+<p class="buttons"><button><a href="/">Home</a></button></p>

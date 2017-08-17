@@ -4,18 +4,18 @@
 
 <h1>Best Restaurants</h1>
 
-<h2>Add a Cuisine</h2>
+<h2>Update @Model.GetName() Cuisine</h2>
 
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3">
     <div class="well">
       <div class="form">
-        <form action="/cuisines" method="post">
+        <form action="/cuisines/@Model.GetId()/@Model.GetName()-restaurants/update" method="post">
           <label for="cuisine-name">Cuisine type:</label>
           <br>
           <input type="text" name="cuisine-name" id="cuisine-name">
           <br>
-          <button type="submit">Add it!</button>
+          <button type="submit">Update</button>
         </form>
       </div>
     </div>

@@ -2,12 +2,23 @@
   Layout = "_Layout";
 }
 
-<h2> Restaurants</h2>
+<h1>Best Restaurants</h1>
 
-@foreach(var restaurant in @Model["restaurants"])
-{
-  <li><a href="/cuisines/@restaurant.GetCuisineId()/@restaurant.GetCuisine()-restaurants/@restaurant.GetId()">@restaurant.GetName()</a></li>
-}
+<h2>@Model["cuisines"].GetName() Restaurants</h2>
 
-<button><a href='/cuisines/@Model["cuisines"].GetId()/@Model["cuisines"].GetName()-restaurants/form'>Add @Model["cuisines"].GetName() Restaurant</a></button>
-<a href="/">Home</a>
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+      <div class="well">
+        @foreach(var restaurant in @Model["restaurants"])
+        {
+          <li><a href="/cuisines/@restaurant.GetCuisineId()/@restaurant.GetCuisine()-restaurants/@restaurant.GetId()">@restaurant.GetName()</a></li>
+        }
+    </div>
+  </div>
+</div>
+
+<p class="buttons"><button><a href='/cuisines/@Model["cuisines"].GetId()/@Model["cuisines"].GetName()-restaurants/form'><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Add @Model["cuisines"].GetName() Restaurant</a></button>
+
+<p class="buttons"><button><a href='/cuisines/@Model["cuisines"].GetId()/@Model["cuisines"].GetName()-restaurants/edit'>Update Cuisine Name</a></button></p>
+
+<p class="buttons"><button><a href="/">Home</a></button></p>

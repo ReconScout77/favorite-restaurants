@@ -1,0 +1,70 @@
+body {
+  background-image: url("../img/japanesefood.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 10px;
+  font-size: 120px;
+  margin-bottom: 5%;
+  font-family: 'Shrikhand', cursive;
+  font-weight: bold;
+  color: #ED1C24;
+}
+
+h2 {
+  text-align: center;
+  letter-spacing: 5px;
+  font-family: 'Shrikhand', cursive;
+  font-size: 80px;
+  margin-bottom: 2%;
+}
+
+.well {
+  font-size: 25px;
+  margin-bottom: 5%;
+  background-color: #F08DA5;
+  color: white;
+  opacity: 0.9;
+
+}
+a {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+p {
+  text-align: center;
+  font-size: 30px;
+}
+
+.buttons {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 2%;
+}
+
+button {
+  text-align: center;
+  font-size: 30px;
+  background-color: #F08DA5;
+  color: white;
+}
+
+.form {
+  text-align: center;
+  font-size: 20px;
+}
+
+input {
+  color: #F08DA5;
+}
+
+label {
+  font-size: 30px;
+}

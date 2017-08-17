@@ -6,10 +6,16 @@
 
 <h2>Cuisines</h2>
 
-@foreach (var cuisine in Model)
-{
-  <li><a href="/cuisines/@cuisine.GetId()/@cuisine.GetName()-restaurants">@cuisine.GetName()</a></li>
-}
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <div class="well">
+      @foreach (var cuisine in Model)
+      {
+        <li><a href="/cuisines/@cuisine.GetId()/@cuisine.GetName()-restaurants">@cuisine.GetName()</a></li>
+      }
+    </div>
+  </div>
+</div>
 
-<button><a href="/cuisines/form">Add Cuisine</a></button>
-<button class="btn btn-warning"><a href="/cuisines/delete-all">Delete All</a></button>
+<p class="buttons"><button><a href="/cuisines/form">Add Cuisine</a></button></p>
+<p class="buttons"><button><a href="/cuisines/delete-all"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> All</a></button></p>

@@ -23,20 +23,38 @@ namespace FavoriteRestaurants.Controllers
     [HttpPost("/cuisines")]
     public ActionResult CuisineList()
     {
-      Cuisine newCuisine = new Cuisine(Request.Form["cuisine-name"]);
+      string cuisineInput = Request.Form["cuisine-name"];
+      string cuisineUpper = char.ToUpper(cuisineInput[0]) + cuisineInput.Substring(1);
+      Cuisine newCuisine = new Cuisine(cuisineUpper);
       newCuisine.Save();
       List<Cuisine> allCuisines = Cuisine.GetAll();
       return View("Index", allCuisines);
     }
 
-    [HttpPost("/cuisines/delete-all")]
+    [HttpGet("/cuisines/delete-all")]
     public ActionResult CuisineDeleteAll()
     {
-      Restaurant.GetAll();
+      Restaurant.DeleteAll();
       Cuisine.DeleteAll();
       List<Cuisine> allCuisines = Cuisine.GetAll();
       return View("Index", allCuisines);
     }
+
+    [HttpGet("/cuisines/{id}/{name}-restaurants/edit")]
+    public ActionResult CuisineUpdate(int id)
+    {
+      Cuisine thisCuisine = Cuisine.Find(id);
+      return View(thisCuisine);
+    }
+
+    [HttpPost("/cuisines/{id}/{name}-restaurants/update")]
+    public ActionResult CuisineEditList(int id)
+    {
+      Cuisine thisCuisine = Cuisine.Find(id);
+      thisCuisine.UpdateCuisineName(Request.Form["cuisine-name"]);
+      return RedirectToAction("Restaurants");
+    }
+
 
     [HttpGet("/cuisines/{id}/{name}-restaurants")]
     public ActionResult Restaurants(int id)
@@ -89,6 +107,18 @@ namespace FavoriteRestaurants.Controllers
       Restaurant thisRestaurant = Restaurant.Find(id2);
       thisRestaurant.UpdateRestaurant(Request.Form["restaurant-name"], Request.Form["location"], Request.Form["hours"]);
       return RedirectToAction("Restaurants");
+    }
+
+    [HttpGet("/cuisines/{id}/{name}-restaurants/{id2}/delete")]
+    public ActionResult RestaurantDelete(int id, int id2)
+    {
+      Restaurant.DeleteRestaurant(id2);
+      Cuisine thisCuisine = Cuisine.Find(id);
+      List<Restaurant> allRestaurants = thisCuisine.GetRestaurants();
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("cuisines", thisCuisine);
+      model.Add("restaurants", allRestaurants);
+      return View("Restaurants", model);
     }
   }
 }

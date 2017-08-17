@@ -2,16 +2,32 @@
   Layout = "_Layout";
 }
 
+<h1>Best Restaurants</h1>
+
 <h2>Update @Model.GetName() Details</h2>
 
-<form action="/cuisines/@Model.GetCuisineId()/@Model.GetCuisine()-restaurants/@Model.GetId()/update" method="post">
-  <label for="restaurant-name">Restaurant name:</label>
-  <input type="text" name="restaurant-name" id="restaurant-name">
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <div class="well">
+      <div class="form">
+        <form action="/cuisines/@Model.GetCuisineId()/@Model.GetCuisine()-restaurants/@Model.GetId()/update" method="post">
+          <label for="restaurant-name">Restaurant name:</label>
+          <br>
+          <input type="text" name="restaurant-name" id="restaurant-name">
+          <br>
+          <label for="location">Location:</label>
+          <br>
+          <input type="text" name="location" id="location">
+          <br>
+          <label for="hours">Hours:</label>
+          <br>
+          <input type="text" name="hours" id="hours">
+          <br>
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <label for="location">Location:</label>
-  <input type="text" name="location" id="location">
-
-  <label for="hours">Hours:</label>
-  <input type="text" name="hours" id="hours">
-  <button type="submit">Update</button>
-</form>
+<p class="buttons"><button><a href="/">Home</a></button></p>
