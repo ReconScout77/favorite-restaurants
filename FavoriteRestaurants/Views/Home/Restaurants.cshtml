@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2> Restaurants</h2>
+
+@foreach(var restaurant in @Model["restaurants"])
+{
+  <li><a href="/cuisines/@restaurant.GetCuisineId()/@restaurant.GetCuisine()-restaurants/@restaurant.GetId()">@restaurant.GetName()</a></li>
+}
+
+<button><a href='/cuisines/@Model["cuisines"].GetId()/@Model["cuisines"].GetName()-restaurants/form'>Add @Model["cuisines"].GetName() Restaurant</a></button>
+<a href="/">Home</a>

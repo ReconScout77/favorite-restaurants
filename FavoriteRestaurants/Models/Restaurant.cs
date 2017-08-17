@@ -182,6 +182,36 @@ namespace FavoriteRestaurants.Models
       return foundRestaurant;
     }
 
+    public string GetCuisine()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM cuisines WHERE id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = this._cuisineId;
+      cmd.Parameters.Add(thisId);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      string cuisineName = "";
+
+      while (rdr.Read())
+      {
+        cuisineName = rdr.GetString(1);
+      }
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return cuisineName;
+    }
+
+
     public void UpdateName(string newName)
     {
       MySqlConnection conn = DB.Connection();

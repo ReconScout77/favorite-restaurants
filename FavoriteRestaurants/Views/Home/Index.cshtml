@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Best Restaurants</h1>
+
+<h2>Cuisines</h2>
+
+@foreach (var cuisine in Model)
+{
+  <li><a href="/cuisines/@cuisine.GetId()/@cuisine.GetName()-restaurants">@cuisine.GetName()</a></li>
+}
+
+<button><a href="/cuisines/form">Add Cuisine</a></button>
+<button class="btn btn-warning"><a href="/cuisines/delete-all">Delete All</a></button>

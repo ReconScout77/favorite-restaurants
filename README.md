@@ -10,8 +10,8 @@ _A webpage which allows users to post their favorite restaurants and organize th
 
 || Behavior  | Input  | Output  |
 |---|---|---|---|
-|1.| User can add a cuisine type.  | <ol><li>Click `Add Cuisine Type`</li><li>View returns a form where the user may enter a type of cuisine</li><li>User enter 'Mexican' into the form and clicks 'Add'</li></ol>  | Return list of all cuisines entered:<br><li>Mexican</li>  |
-|2.| User can add a restaurant to a cuisine type  | <li>Click `Mexican` within the list of cuisines</li><li>View returns a list of all restaurants which serve Mexican cuisine and a button `Add a Restaurant`</li><li>User clicks `Add a Restaurant`</li><li>View returns a form to add a restaurant name, location, and hours</li><li>User enters 'Cilantro', '123 Abc St, Seattle, WA 98040', '11am-8pm' and clicks `Add`</li>  | View returns to the list of restaurants    |
+|1.| User can add a cuisine type.<ol><li>Click `Add Cuisine Type`</li><li>View returns a form where the user may enter a type of cuisine</li></ol> | User enter 'Mexican' into the form and clicks `Add`  | Return list of all cuisines entered:<br><li>Mexican</li>  |
+|2.| User can add a restaurant to a cuisine type. <ol><li>Click `Mexican` within the list of cuisines</li><li>View returns a list of all restaurants which serve Mexican cuisine and a button `Add a Restaurant`</li><li>User clicks `Add a Restaurant`</li><li>View returns a form to add a restaurant name, location, and hours</li></ol>  | User enters 'Cilantro', '123 Abc St, Seattle, WA 98040', '11am-8pm' and clicks `Add`  | View returns to the list of restaurants. Mexican: <li>Cilantro</li>    |
 |3.|   |   |   |
 |4.|   |   |   |
 |5.|   |   |   |

@@ -11,6 +11,7 @@ namespace FavoriteRestaurants.Tests
     public void Dispose()
     {
       Restaurant.DeleteAll();
+      Cuisine.DeleteAll();
     }
 
     public RestaurantTest()
@@ -189,6 +190,20 @@ namespace FavoriteRestaurants.Tests
       // Console.WriteLine(expectedList[0].GetDetails());
 
       CollectionAssert.AreEqual(allRestaurants, expectedList);
+    }
+
+    [TestMethod]
+    public void GetCuisineName_ReturnsCuisineTypeForRestaurant_String()
+    {
+      Cuisine newCuisine = new Cuisine("Mexican", 1);
+      newCuisine.Save();
+      Restaurant newRestaurant = new Restaurant("place", "location", "24", newCuisine.GetId());
+      newRestaurant.Save();
+
+      Console.WriteLine(newRestaurant.GetDetails());
+      Console.WriteLine(newRestaurant.GetCuisine());
+
+      Assert.AreEqual("Mexican", newRestaurant.GetCuisine());
     }
   }
 }

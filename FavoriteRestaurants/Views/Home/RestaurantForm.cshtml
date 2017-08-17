@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>Add a Restaurant</h2>
+
+<form action="/cuisines/@Model.GetId()/@Model.GetName()-restaurants/new" method="post">
+  <label for="restaurant-name">Restaurant name:</label>
+  <input type="text" name="restaurant-name" id="restaurant-name">
+
+  <label for="location">Location:</label>
+  <input type="text" name="location" id="location">
+
+  <label for="hours">Hours:</label>
+  <input type="text" name="hours" id="hours">
+  <button type="submit">Add it!</button>
+</form>
+
+
+<a href="/cuisines/@Model.GetId()/@Model.GetName()-restaurants">Back to @Model.GetName() restaurants</a>
+<a href="/">Home</a>

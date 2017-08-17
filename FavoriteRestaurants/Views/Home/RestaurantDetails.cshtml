@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>@Model.GetName() Details</h2>
+
+<p>@Model.GetLocation()</p>
+<p>@Model.GetHours()</p>
+
+<button><a href="/cuisines/@Model.GetCuisineId()/@Model.GetCuisine()-restaurants/@Model.GetId()/edit">Update Restaurant</a></button>
+<button><a href="/">Home</a></button>
